@@ -57,8 +57,7 @@ Create `.vscode/settings.json`:
     "editor.defaultFormatter": "biomejs.biome",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
-    },
-    "eslint.quiet": ["eslint-plugin-tailwindcss-prettier"]
+    }
 }
 ```
 

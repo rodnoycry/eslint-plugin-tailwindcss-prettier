@@ -10,11 +10,11 @@ When migrating from Prettier to Biome for better performance, you lose Tailwind 
 
 This plugin exclusively handles Tailwind class sorting while letting Biome handle the main formatting. It:
 
-- ✅ Only formats Tailwind classes
-- ✅ Works with ESLint's autofix
-- ✅ Perfectly complements Biome
-- ✅ Avoids performance overhead of double formatting
-- ✅ Uses same sorting logic as `prettier-plugin-tailwindcss`
+-   ✅ Only formats Tailwind classes
+-   ✅ Works with ESLint's autofix
+-   ✅ Perfectly complements Biome
+-   ✅ Avoids performance overhead of double formatting
+-   ✅ Uses same sorting logic as `prettier-plugin-tailwindcss`
 
 ## Installation
 
@@ -28,16 +28,16 @@ npm install --save-dev eslint-plugin-tailwindcss-prettier
 
 ```json
 {
-  "plugins": ["tailwind-class-order"],
-  "rules": {
-    "tailwind-class-order/order": [
-      "error",
-      {
-        "attributes": ["className"],
-        "functions": ["clsx", "cn", "tw"]
-      }
-    ]
-  }
+    "plugins": ["tailwindcss-prettier"],
+    "rules": {
+        "tailwindcss-prettier": [
+            "warn",
+            {
+                "attributes": ["className"],
+                "functions": ["clsx", "cn", "tw"]
+            }
+        ]
+    }
 }
 ```
 
@@ -47,12 +47,12 @@ Create `.vscode/settings.json`:
 
 ```json
 {
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-  "eslint.quiet": ["eslint-plugin-tailwindcss-prettier"]
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "eslint.quiet": ["eslint-plugin-tailwindcss-prettier"]
 }
 ```
 
@@ -60,11 +60,11 @@ Create `.vscode/extensions.json`:
 
 ```json
 {
-  "recommendations": [
-    "biomejs.biome",
-    "dbaeumer.vscode-eslint",
-    "bradlc.vscode-tailwindcss"
-  ]
+    "recommendations": [
+        "biomejs.biome",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss"
+    ]
 }
 ```
 
@@ -72,8 +72,8 @@ Create `.vscode/extensions.json`:
 
 1. Biome handles primary code formatting with superior performance
 2. This plugin only processes Tailwind classes in:
-   - Specified classes attributes
-   - Specified function calls (clsx, cn, tw)
+    - Specified classes attributes
+    - Specified function calls (clsx, cn, tw)
 3. ESLint autofix applies the changes on save
 
 ## Example
@@ -94,10 +94,10 @@ Create `.vscode/extensions.json`:
 
 This solution emerged from a specific need: maintaining Tailwind class ordering while using Biome's superior formatting performance. Traditional setups using Prettier + ESLint would format the code twice, negating Biome's speed benefits. This plugin provides the best of both worlds:
 
-- Biome's fast formatting
-- Tailwind class ordering
-- Essential ESLint rules
-- No performance overhead
+-   Biome's fast formatting
+-   Tailwind class ordering
+-   Essential ESLint rules
+-   No performance overhead
 
 ## License
 

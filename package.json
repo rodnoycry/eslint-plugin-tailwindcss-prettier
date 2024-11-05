@@ -1,0 +1,29 @@
+{
+    "name": "eslint-plugin-tailwindcss-prettier",
+    "version": "0.1.0",
+    "description": "ESLint plugin for ordering Tailwind CSS classes",
+    "main": "lib/index.js",
+    "files": [
+      "lib"
+    ],
+    "scripts": {
+      "lint": "eslint ."
+    },
+    "keywords": [
+      "eslint",
+      "eslintplugin",
+      "eslint-plugin",
+      "tailwind",
+      "tailwindcss",
+      "prettier"
+    ],
+    "author": "Nikita Leontev",
+    "license": "MIT",
+    "peerDependencies": {
+      "eslint": ">=7"
+    },
+    "devDependencies": {
+      "eslint": "^8.0.0"
+    }
+}
+  

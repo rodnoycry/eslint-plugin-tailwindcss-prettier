@@ -24,6 +24,10 @@
     },
     "devDependencies": {
       "eslint": "^8.0.0"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/rodnoycry/eslint-plugin-tailwindcss-prettier.git"
     }
 }
   

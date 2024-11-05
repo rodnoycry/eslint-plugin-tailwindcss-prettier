@@ -19,6 +19,12 @@ This plugin exclusively handles Tailwind class sorting while letting Biome handl
 ## Installation
 
 ```bash
+npm install --save-dev github:rodnoycry/eslint-plugin-tailwindcss-prettier
+```
+
+_Later after publication to NPM:_
+
+```bash
 npm install --save-dev eslint-plugin-tailwindcss-prettier
 ```
 

@@ -36,7 +36,7 @@ npm install --save-dev eslint-plugin-tailwindcss-prettier
 {
     "plugins": ["tailwindcss-prettier"],
     "rules": {
-        "tailwindcss-prettier": [
+        "tailwindcss-prettier/order": [
             "warn",
             {
                 "attributes": ["className"],

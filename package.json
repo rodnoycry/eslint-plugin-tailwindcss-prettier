@@ -5,30 +5,31 @@
     "main": "lib/index.js",
     "type": "commonjs",
     "files": [
-      "lib"
+        "lib"
     ],
     "scripts": {
-      "lint": "eslint ."
+        "lint": "eslint ."
     },
     "keywords": [
-      "eslint",
-      "eslintplugin",
-      "eslint-plugin",
-      "tailwind",
-      "tailwindcss",
-      "prettier"
+        "eslint",
+        "eslintplugin",
+        "eslint-plugin",
+        "tailwind",
+        "tailwindcss",
+        "prettier"
     ],
     "author": "Nikita Leontev",
     "license": "MIT",
     "peerDependencies": {
-      "eslint": ">=7"
+        "eslint": ">=7"
     },
     "devDependencies": {
-      "eslint": "^8.0.0"
+        "eslint": "^8.0.0",
+        "prettier-plugin-tailwindcss": "^0.6.8",
+        "synckit": "^0.9.2"
     },
     "repository": {
-      "type": "git",
-      "url": "https://github.com/rodnoycry/eslint-plugin-tailwindcss-prettier.git"
+        "type": "git",
+        "url": "https://github.com/rodnoycry/eslint-plugin-tailwindcss-prettier.git"
     }
 }
-  

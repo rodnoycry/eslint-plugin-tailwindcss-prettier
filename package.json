@@ -20,13 +20,14 @@
     "author": "Nikita Leontev",
     "license": "MIT",
     "dependencies": {
-      "prettier-plugin-tailwindcss": "^0.6.8",
-      "synckit": "^0.9.2"
+        "prettier-plugin-tailwindcss": "^0.6.8",
+        "synckit": "^0.9.2"
     },
     "peerDependencies": {
         "eslint": ">=7"
     },
     "devDependencies": {
+        "@changesets/cli": "^2.31.0",
         "eslint": "^8.0.0"
     },
     "repository": {

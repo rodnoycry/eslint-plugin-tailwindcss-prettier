@@ -1,6 +1,6 @@
 {
     "name": "eslint-plugin-tailwindcss-prettier",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "ESLint plugin for ordering Tailwind CSS classes",
     "main": "lib/index.js",
     "files": [

@@ -4,10 +4,17 @@
     "description": "ESLint plugin for ordering Tailwind CSS classes",
     "main": "lib/index.js",
     "files": [
-        "lib"
+        "lib",
+        "CHANGELOG.md"
     ],
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
     "scripts": {
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "version": "npx changeset version",
+        "release": "npx changeset publish && npx changeset tag"
     },
     "keywords": [
         "eslint",
@@ -30,8 +37,12 @@
         "@changesets/cli": "^2.31.0",
         "eslint": "^8.0.0"
     },
+    "homepage": "https://github.com/rodnoycry/eslint-plugin-tailwindcss-prettier#readme",
+    "bugs": {
+        "url": "https://github.com/rodnoycry/eslint-plugin-tailwindcss-prettier/issues"
+    },
     "repository": {
         "type": "git",
-        "url": "https://github.com/rodnoycry/eslint-plugin-tailwindcss-prettier.git"
+        "url": "git+https://github.com/rodnoycry/eslint-plugin-tailwindcss-prettier.git"
     }
 }

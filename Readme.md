@@ -1,6 +1,6 @@
 # eslint-plugin-tailwindcss-prettier
 
-ESLint plugin that brings Tailwind class sorting without affecting the rest of your code formatting. Perfect companion for Biome formatter.
+ESLint plugin that sorts Tailwind CSS classes using the same logic as `prettier-plugin-tailwindcss`, without affecting the rest of your code formatting.
 
 ## The Problem
 
@@ -8,21 +8,13 @@ When migrating from Prettier to Biome for better performance, you lose Tailwind 
 
 ## The Solution
 
-This plugin exclusively handles Tailwind class sorting while letting Biome handle the main formatting. It:
+This plugin exclusively handles Tailwind class sorting while letting your formatter of choice handle everything else. It:
 
--   ✅ Only formats Tailwind classes
--   ✅ Works with ESLint's autofix
--   ✅ Perfectly complements Biome
--   ✅ Avoids performance overhead of double formatting
--   ✅ Uses same sorting logic as `prettier-plugin-tailwindcss`
+-   Only sorts Tailwind classes, nothing else
+-   Works with ESLint's autofix
+-   Uses the official `prettier-plugin-tailwindcss` sorting logic
 
 ## Installation
-
-```bash
-npm install --save-dev github:rodnoycry/eslint-plugin-tailwindcss-prettier
-```
-
-_Later after publication to NPM:_
 
 ```bash
 npm install --save-dev eslint-plugin-tailwindcss-prettier
@@ -30,7 +22,20 @@ npm install --save-dev eslint-plugin-tailwindcss-prettier
 
 ## Setup
 
-### 1. ESLint Configuration
+### ESLint Configuration
+
+Minimal configuration — `className` is checked by default:
+
+```json
+{
+    "plugins": ["tailwindcss-prettier"],
+    "rules": {
+        "tailwindcss-prettier/order": "warn"
+    }
+}
+```
+
+To also sort classes in additional attributes or function calls:
 
 ```json
 {
@@ -39,7 +44,7 @@ npm install --save-dev eslint-plugin-tailwindcss-prettier
         "tailwindcss-prettier/order": [
             "warn",
             {
-                "attributes": ["className"],
+                "attributes": ["class"],
                 "functions": ["clsx", "cn", "tw"]
             }
         ]
@@ -47,9 +52,15 @@ npm install --save-dev eslint-plugin-tailwindcss-prettier
 }
 ```
 
-### 2. VSCode Settings
+`attributes` — additional JSX attributes to sort (on top of `className` which is always included).
 
-Create `.vscode/settings.json`:
+`functions` — function calls whose string arguments should be sorted.
+
+### VSCode Settings
+
+To autofix on save with Biome as the primary formatter:
+
+`.vscode/settings.json`:
 
 ```json
 {
@@ -60,26 +71,6 @@ Create `.vscode/settings.json`:
     }
 }
 ```
-
-Create `.vscode/extensions.json`:
-
-```json
-{
-    "recommendations": [
-        "biomejs.biome",
-        "dbaeumer.vscode-eslint",
-        "bradlc.vscode-tailwindcss"
-    ]
-}
-```
-
-## How It Works
-
-1. Biome handles primary code formatting with superior performance
-2. This plugin only processes Tailwind classes in:
-    - Specified classes attributes
-    - Specified function calls (clsx, cn, tw)
-3. ESLint autofix applies the changes on save
 
 ## Example
 
@@ -94,15 +85,6 @@ Create `.vscode/extensions.json`:
   {clsx("mt-2 text-red-500")}
 </div>
 ```
-
-## Why This Approach?
-
-This solution emerged from a specific need: maintaining Tailwind class ordering while using Biome's superior formatting performance. Traditional setups using Prettier + ESLint would format the code twice, negating Biome's speed benefits. This plugin provides the best of both worlds:
-
--   Biome's fast formatting
--   Tailwind class ordering
--   Essential ESLint rules
--   No performance overhead
 
 ## License
 

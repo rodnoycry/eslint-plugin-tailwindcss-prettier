@@ -12,7 +12,12 @@ This plugin exclusively handles Tailwind class sorting while letting your format
 
 -   Only sorts Tailwind classes, nothing else
 -   Works with ESLint's autofix
--   Uses the official `prettier-plugin-tailwindcss` sorting logic
+-   Uses the official `prettier-plugin-tailwindcss` sorter directly, so the order matches Prettier exactly without running Prettier on your files
+
+## Requirements
+
+-   ESLint 8.40 or newer (ESLint 9 and 10 supported)
+-   Node.js 20.19 or newer
 
 ## Installation
 
@@ -24,37 +29,61 @@ npm install --save-dev eslint-plugin-tailwindcss-prettier
 
 ### ESLint Configuration
 
-Minimal configuration — `className` is checked by default:
+`eslint.config.js` (flat config):
 
-```json
-{
-    "plugins": ["tailwindcss-prettier"],
-    "rules": {
-        "tailwindcss-prettier/order": "warn"
-    }
-}
+```js
+import tailwindcssPrettier from "eslint-plugin-tailwindcss-prettier"
+
+export default [
+    {
+        plugins: {
+            "tailwindcss-prettier": tailwindcssPrettier,
+        },
+        rules: {
+            "tailwindcss-prettier/order": [
+                "warn",
+                {
+                    // Tailwind v4: your main CSS file (the one with `@import "tailwindcss"`)
+                    stylesheet: "./src/styles/globals.css",
+                    functions: ["clsx", "cn", "cva", "tw"],
+                },
+            ],
+        },
+    },
+]
 ```
 
-To also sort classes in additional attributes or function calls:
+Or use the recommended config, which only checks `className` with no extra options:
 
-```json
-{
-    "plugins": ["tailwindcss-prettier"],
-    "rules": {
-        "tailwindcss-prettier/order": [
-            "warn",
-            {
-                "attributes": ["class"],
-                "functions": ["clsx", "cn", "tw"]
-            }
-        ]
-    }
-}
+```js
+import tailwindcssPrettier from "eslint-plugin-tailwindcss-prettier"
+
+export default [tailwindcssPrettier.configs.recommended]
 ```
 
-`attributes` — additional JSX attributes to sort (on top of `className` which is always included).
+For legacy `.eslintrc` configs (ESLint 8), use `"extends": ["plugin:tailwindcss-prettier/legacy-recommended"]`.
 
-`functions` — function calls whose string arguments should be sorted.
+### Options
+
+`stylesheet` — path to your Tailwind v4 CSS entry file, relative to where ESLint runs. Without it, classes from your theme (e.g. `bg-primary`) are unknown to the sorter and end up out of order.
+
+`config` — path to your `tailwind.config.js` (Tailwind v3 only). If omitted, the closest config file is found automatically.
+
+`attributes` — additional JSX attributes to sort (on top of `className`, which is always included).
+
+`functions` — functions whose string arguments are sorted. Works for calls and tagged templates, and finds strings inside conditionals, arrays and objects:
+
+```js
+cn("flex p-4", isActive && "bg-blue-500 text-white", { "opacity-50": disabled })
+
+cva("inline-flex items-center", {
+    variants: { size: { sm: "h-8 px-2", lg: "h-12 px-6" } },
+})
+
+tw`flex p-4`
+```
+
+Template literals with `${expressions}` and strings with escape sequences are skipped.
 
 ### VSCode Settings
 
